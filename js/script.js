@@ -16,7 +16,9 @@ fetch('https://restcountries.com/v3.1/all') // Realiza una petición GET a la AP
 $(document).ready(function() {
     $('#banderas').on('click', 'img', function() {
         const src = $(this).attr('src');
+        const alt = $(this).attr('alt');
         $('#enlarged-image').attr('src', src);
+        $('#country-name').text(alt);
         $('#overlay, #enlarged-image-container').fadeIn();
     });
 
