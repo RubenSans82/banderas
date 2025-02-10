@@ -1,7 +1,9 @@
-fetch('https://restcountries.com/v3.1/all') // Realiza una petición GET a la API de Rest Countries
+function solicitarDatos() {
+    fetch('https://restcountries.com/v3.1/all') // Realiza una petición GET a la API de Rest Countries
     .then(response => {
         $('#cargando').hide();
-        return response.json()}) // Convierte la respuesta en un objeto JSON
+        return response.json()
+    }) // Convierte la respuesta en un objeto JSON
     .then(data => { // Captura los datos
         let countries = data; // Almacena los datos en una variable
         countries.forEach(country => { // Recorre cada país
@@ -12,9 +14,9 @@ fetch('https://restcountries.com/v3.1/all') // Realiza una petición GET a la AP
         });
     })
     .catch(error => console.error('Error:', error)); // Captura cualquier error y lo muestra en la consola
-
-$(document).ready(function() {
-    $('#banderas').on('click', 'img', function() {
+}
+$(document).ready(function () {
+    $('#banderas').on('click', 'img', function () {
         const src = $(this).attr('src');
         const alt = $(this).attr('alt');
         $('#enlarged-image').attr('src', src);
@@ -22,7 +24,8 @@ $(document).ready(function() {
         $('#overlay, #enlarged-image-container').fadeIn();
     });
 
-    $('#overlay').on('click', function() {
+    $('#overlay').on('click', function () {
         $('#overlay, #enlarged-image-container').fadeOut();
     });
 });
+setTimeout(solicitarDatos, 2000); // Llama a la función solicitarDatos después de 2 segundos
